@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather API</title>
+</head>
+<body>
+    <h1>Weather API</h1>
+    <form id="weather-form" method="POST" action="get_weather">
+        {% csrf_token %}
+        <div>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city">
+        </div>
+        <div>
+            <label for="output-format">Output Format:</label>
+            <select id="output-format" name="output_format">
+                <option value="json">JSON</option>
+                <option value="xml">XML</option>
+            </select>
+        </div>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    <div id="weather-data">
+        {% if weather_data %}
+            <p><strong>Weather:</strong> {{ weather_data.Weather }}</p>
+            <p><strong>Latitude:</strong> {{ weather_data.Latitude }}</p>
+            <p><strong>Longitude:</strong> {{ weather_data.Longitude }}</p>
+            <p><strong>City:</strong> {{ weather_data.City }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
